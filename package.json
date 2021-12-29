@@ -1,0 +1,23 @@
+{
+  "name": "ocs-client-creds-nodejs",
+  "version": "1.0.0",
+  "description": "A sample that performs client credential authentication against OCS",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve -l 5004 src",
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osisoft/sample-ocs-authentication_client_credentials_simple-nodejs.git"
+  },
+  "author": "OSIsoft, LLC",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chromedriver": "^94.0.0",
+    "jasmine": "^3.10.0",
+    "jasmine-reporters": "^2.5.0",
+    "selenium-webdriver": "^4.0.0",
+    "serve": "^12.0.1"
+  }
+}
