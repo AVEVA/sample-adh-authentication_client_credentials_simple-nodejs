@@ -1,6 +1,7 @@
-var axios = require('axios');
 const { URLSearchParams } = require('url');
 var appsettings = require('./appsettings.json');
+var assert = require('assert');
+var axios = require('axios');
 
 // Step 1: get needed variables 
 var resource = appsettings.Resource;
@@ -52,7 +53,7 @@ var app = async function (request1, response) {
     });
 
     // test it by making sure we got a valid http status code  
-    console.log(tenant.status)
+    assert.equal(tenant.status, 200);
 };
 
 var toRun = function () {
