@@ -9,55 +9,65 @@ var clientSecret = appsettings.ClientSecret;
 var tenantId = appsettings.TenantId;
 var apiVersion = appsettings.ApiVersion;
 
-// Step 2: get the authentication endpoint from the discovery URL
-var token = axios({
-    url: resource + '/identity/.well-known/openid-configuration',
-    method: 'GET',
-    headers: {
-    Accept: 'application/json',
-    'Accept-Encoding': 'gzip',
-    },
-})
-// Step 3: use the client ID and Secret to get the needed bearer token
-    .then(function (res) {
-    var obj = res.data;
+var app = async function (request1, response) {
+    // Step 2: get the authentication endpoint from the discovery URL
+    var wellknown_information = await axios({
+        url: resource + '/identity/.well-known/openid-configuration',
+        method: 'GET',
+        headers: {
+        Accept: 'application/json',
+        'Accept-Encoding': 'gzip',
+        },
+    })
+
+    var obj = wellknown_information.data;
     authority = new URL(obj.token_endpoint);
-    resUrl = new URL(resource);
-    if (
-        authority.protocol === resUrl.protocol &&
-        authority.hostname === resUrl.hostname
-    ) {
-        var body = new URLSearchParams({
+
+    // Step 3: use the client ID and Secret to get the needed bearer token
+    var body = new URLSearchParams({
         grant_type: 'client_credentials',
         client_id: clientId,
         client_secret: clientSecret,
-        });
+    });
 
-        return axios.post(authority.href, body.toString(), {
+    var token_information = await axios({
+        url: authority.href, 
+        method: 'POST',
+        data: body.toString(), 
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        });
-    } else {
-        logError(`Encountered error parsing authority: ${authority.href}`);
-    }
-    })
-    .catch(function (err) {
-    logError(err);
     });
 
+    var obj = token_information.data;
+    var token = obj.access_token;
 
-// Step 4: test token by calling the base tenant endpoint 
-var tenant = axios({
-    url: resource + '/api/' + apiVersion + '/Tenants/' + tenantId,
-    method: 'GET',
-    headers: {
-    'Accept-Encoding': 'gzip',
-    'Content-Encoding': 'gzip',
-    Authorization: 'bearer ' + token,
-    'Content-type': 'application/json',
-    Accept: '*/*; q=1',
-    },
-});
+    // Step 4: test token by calling the base tenant endpoint 
+    var tenant = await axios({
+        url: resource + '/api/' + apiVersion + '/Tenants/' + tenantId,
+        method: 'GET',
+        headers: {
+            'Accept-Encoding': 'gzip',
+            'Content-Encoding': 'gzip',
+            Authorization: 'bearer ' + token,
+            'Content-type': 'application/json',
+            Accept: '*/*; q=1',
+        },
+    });
 
-// test it by making sure we got a valid http status code  
+    // test it by making sure we got a valid http status code  
+    console.log(tenant.status)
+};
+
+//if you want to run a server
+var toRun = function () {
+    //This server is hosted over HTTP.  This is not secure and should not be used beyond local testing.
+    http.createServer(app).listen(8080);
+};
+
+process.argv = process.argv.slice(2);
+if (require.main === module) {
+  app.apply(process.argv);
+}
+
+module.exports = app;
