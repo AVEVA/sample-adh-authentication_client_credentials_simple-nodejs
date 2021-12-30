@@ -10,6 +10,7 @@ var tenantId = appsettings.TenantId;
 var apiVersion = appsettings.ApiVersion;
 
 var app = async function (request1, response) {
+
     // Step 2: get the authentication endpoint from the discovery URL
     var wellknown_information = await axios({
         url: resource + '/identity/.well-known/openid-configuration',
@@ -20,8 +21,7 @@ var app = async function (request1, response) {
         },
     })
 
-    var obj = wellknown_information.data;
-    authority = new URL(obj.token_endpoint);
+    authority = new URL(wellknown_information.data.token_endpoint);
 
     // Step 3: use the client ID and Secret to get the needed bearer token
     var body = new URLSearchParams({
@@ -39,19 +39,15 @@ var app = async function (request1, response) {
         },
     });
 
-    var obj = token_information.data;
-    var token = obj.access_token;
+    var token = token_information.data.access_token;
 
     // Step 4: test token by calling the base tenant endpoint 
     var tenant = await axios({
         url: resource + '/api/' + apiVersion + '/Tenants/' + tenantId,
         method: 'GET',
         headers: {
-            'Accept-Encoding': 'gzip',
-            'Content-Encoding': 'gzip',
             Authorization: 'bearer ' + token,
             'Content-type': 'application/json',
-            Accept: '*/*; q=1',
         },
     });
 
@@ -59,7 +55,6 @@ var app = async function (request1, response) {
     console.log(tenant.status)
 };
 
-//if you want to run a server
 var toRun = function () {
     //This server is hosted over HTTP.  This is not secure and should not be used beyond local testing.
     http.createServer(app).listen(8080);
