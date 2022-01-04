@@ -8,7 +8,7 @@ console.log('test');
 jasmine.getEnv().addReporter(junitReporter);
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
-describe('SDS NodeJS Sample', function () {
+describe('Auth Client Creds Simple NodeJS Sample', function () {
   beforeEach(function () {});
 
   it('should be able to complete the main method', function (done) {
