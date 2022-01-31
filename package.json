@@ -1,7 +1,7 @@
 {
-  "name": "ocs-client-creds-nodejs",
+  "name": "adh-client-creds-nodejs",
   "version": "1.0.0",
-  "description": "A sample that performs client credential authentication against OCS",
+  "description": "A sample that performs client credential authentication against ADH",
   "main": "index.js",
   "scripts": {
     "start": "serve -l 5004 src",
