@@ -9,10 +9,8 @@ jasmine.getEnv().addReporter(junitReporter);
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 describe('Auth Client Creds Simple NodeJS Sample', function () {
-  beforeEach(function () {});
 
   it('should be able to complete the main method', function (done) {
-    console.log('hello?');
     sample = Sample(null, null)
       .catch(function (err) {
         console.log(err);
