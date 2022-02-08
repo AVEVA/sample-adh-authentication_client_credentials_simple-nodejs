@@ -14,7 +14,7 @@
   "author": "OSIsoft, LLC",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.24.0"
+    "axios": "^0.25.0"
   },
   "devDependencies": {
     "jasmine": "^3.10.0",
