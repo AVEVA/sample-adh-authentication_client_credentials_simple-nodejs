@@ -1,6 +1,6 @@
 {
   "name": "adh-client-creds-nodejs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A sample that performs client credential authentication against ADH",
   "main": "index.js",
   "scripts": {
