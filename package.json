@@ -1,6 +1,6 @@
 {
   "name": "adh-client-creds-nodejs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A sample that performs client credential authentication against ADH",
   "main": "index.js",
   "scripts": {
@@ -14,10 +14,10 @@
   "author": "OSIsoft, LLC",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.26.1"
+    "axios": "^0.27.2"
   },
   "devDependencies": {
-    "jasmine": "^4.0.2",
+    "jasmine": "^4.2.1",
     "jasmine-reporters": "^2.5.0"
   }
 }
