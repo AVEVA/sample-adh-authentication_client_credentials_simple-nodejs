@@ -1,6 +1,6 @@
 # AVEVA Data Hub Client Credentials NodeJS Sample
 
-**Version:** 1.0.5
+**Version:** 1.0.6
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/ADH/aveva.sample-adh-authentication_client_credentials_simple-nodejs?branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=4474&branchName=main)
 
