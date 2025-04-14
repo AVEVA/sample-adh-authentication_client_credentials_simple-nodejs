@@ -27,6 +27,7 @@ resources:
       type: github
       name: AVEVA/AVEVA-Samples
       endpoint: AVEVA
+      ref: refs/heads/agentpoolmigration
 
 variables:
   - name: analysisProject
@@ -34,7 +35,7 @@ variables:
 
 parameters:
   - name: pool
-    default: DevOps Managed Containers Build
+    default: DevOps Managed AKS Admin
   - name: containerDemands
     type: object
     default: ['Agent.OS -equals Windows_NT']
