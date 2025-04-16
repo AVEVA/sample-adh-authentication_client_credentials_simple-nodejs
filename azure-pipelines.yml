@@ -44,9 +44,8 @@ jobs:
   - job: Tests
     condition: ne(variables['Build.Reason'], 'Schedule')
     pool:
-      vmImage: windows-2022
-      # name: ${{ parameters.pool }}
-      # demands: ${{ parameters.containerDemands }}
+      name: ${{ parameters.pool }}
+      demands: ${{ parameters.containerDemands }}
     steps:
       - template: '/miscellaneous/build_templates/appsettings.yml@templates'
         parameters:
