@@ -35,7 +35,7 @@ variables:
 
 parameters:
   - name: pool
-    default: DevOps Managed AKS Admin
+    default: 'Cloud Platform CONNECT v2 Development'
   - name: containerDemands
     type: object
     default: ['Agent.OS -equals Windows_NT']
